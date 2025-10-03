@@ -31,7 +31,7 @@ public class DriedMangoDataSeedContributor : IDataSeedContributor, ITransientDep
                 description: "Xoài cát chín tự nhiên, sấy lạnh giữ trọn hương vị, phủ mật ong hoa cà phê tạo vị ngọt thanh.",
                 price: 95000m,
                 weightGrams: 150,
-                imageUrl: "https://images.unsplash.com/photo-1502746781977-ea598727eca5?auto=format&fit=crop&w=800&q=80",
+                imageUrl: "https://images.unsplash.com/photo-1758944966739-cc3a2421e76d?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 stockQuantity: 120),
             new(
                 id: Guid.Parse("b73fa724-7d45-4fd9-b6c2-7cd7ecac0f0b"),
@@ -39,7 +39,7 @@ public class DriedMangoDataSeedContributor : IDataSeedContributor, ITransientDep
                 description: "Kết hợp giữa xoài chín và nước cốt chanh dây tươi, mang đến vị chua ngọt hài hòa và thơm mát.",
                 price: 99000m,
                 weightGrams: 150,
-                imageUrl: "https://images.unsplash.com/photo-1528832995084-5d0f4b64cd98?auto=format&fit=crop&w=800&q=80",
+                imageUrl: "https://images.unsplash.com/photo-1758944966739-cc3a2421e76d?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 stockQuantity: 90),
             new(
                 id: Guid.Parse("f1f2250a-d3f7-4acd-91a3-6a6828e78452"),
@@ -47,7 +47,7 @@ public class DriedMangoDataSeedContributor : IDataSeedContributor, ITransientDep
                 description: "Giữ nguyên độ tươi ngon và màu sắc tự nhiên, không thêm đường, không chất bảo quản.",
                 price: 89000m,
                 weightGrams: 150,
-                imageUrl: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
+                imageUrl: "https://images.unsplash.com/photo-1758944966739-cc3a2421e76d?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 stockQuantity: 150)
         };
 
