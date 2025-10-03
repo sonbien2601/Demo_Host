@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/u0qbw4cr26lg/public_html/
+    - /bin/rsync -av --delete angular/dist/XoaiSay/ 
