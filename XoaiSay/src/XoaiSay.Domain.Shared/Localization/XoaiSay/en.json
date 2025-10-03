@@ -1,0 +1,16 @@
+{
+  "Culture": "en",
+  "Texts": {
+    "AppName": "XoaiSay",
+    "Menu:Home": "Home",
+    "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP framework. For more information visit",
+    "Welcome": "Welcome"
+  },
+  "Permission:PurchaseOrders": "Purchase order management",
+  "Permission:Products.Delete": "Delete product",
+  "Permission:Products": "Product management",
+  "Permission:Products.Edit": "Edit product",
+  "Permission:PurchaseOrders.UpdateStatus": "Update order status",
+  "Permission:Products.Create": "Create product",
+  "XoaiSay:InsufficientStock": "Requested quantity exceeds current stock."
+}

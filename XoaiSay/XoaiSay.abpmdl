@@ -1,0 +1,101 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.3.1",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.3.1",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "XoaiSay.Application": {
+      "path": "src/XoaiSay.Application/XoaiSay.Application.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.Application.Tests": {
+      "path": "test/XoaiSay.Application.Tests/XoaiSay.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "XoaiSay.Domain.Shared": {
+      "path": "src/XoaiSay.Domain.Shared/XoaiSay.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.Application.Contracts": {
+      "path": "src/XoaiSay.Application.Contracts/XoaiSay.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.HttpApi": {
+      "path": "src/XoaiSay.HttpApi/XoaiSay.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.HttpApi.Client": {
+      "path": "src/XoaiSay.HttpApi.Client/XoaiSay.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.EntityFrameworkCore.Tests": {
+      "path": "test/XoaiSay.EntityFrameworkCore.Tests/XoaiSay.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "XoaiSay.EntityFrameworkCore": {
+      "path": "src/XoaiSay.EntityFrameworkCore/XoaiSay.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.TestBase": {
+      "path": "test/XoaiSay.TestBase/XoaiSay.TestBase.abppkg",
+      "folder": "test"
+    },
+    "XoaiSay.Domain.Tests": {
+      "path": "test/XoaiSay.Domain.Tests/XoaiSay.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "XoaiSay.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/XoaiSay.HttpApi.Client.ConsoleTestApp/XoaiSay.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "XoaiSay.DbMigrator": {
+      "path": "src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.HttpApi.Host": {
+      "path": "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.abppkg",
+      "folder": "src"
+    },
+    "XoaiSay.Domain": {
+      "path": "src/XoaiSay.Domain/XoaiSay.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

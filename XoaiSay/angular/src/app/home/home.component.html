@@ -1,0 +1,180 @@
+<div class="hero">
+  <div class="hero__content">
+    <p class="hero__eyebrow">Tinh hoa xoài Việt</p>
+    <h1>Xoài sấy XoaiSay</h1>
+    <p class="hero__lead">
+      Giữ trọn vị ngọt thanh, dẻo mềm tự nhiên từ những trái xoài chín vàng miền nhiệt đới. Sản phẩm phù hợp cho mọi độ tuổi,
+      tiện lợi mang theo và là món quà sức khỏe đầy tinh tế.
+    </p>
+    <div class="hero__actions">
+      <a class="cta" href="#order">Đặt hàng ngay</a>
+      <button type="button" class="ghost" *ngIf="!hasLoggedIn" (click)="login()">Đăng nhập quản trị</button>
+      <a class="ghost" *ngIf="hasLoggedIn" routerLink="/identity/users">Quản trị hệ thống</a>
+    </div>
+  </div>
+  <div class="hero__media">
+    <img alt="Đĩa xoài sấy" src="https://images.unsplash.com/photo-1542838686-6e59580514be?auto=format&fit=crop&w=900&q=80" />
+  </div>
+</div>
+
+<section class="section" id="products">
+  <div class="section__header">
+    <h2>Sản phẩm nổi bật</h2>
+    <p>Nguyên liệu tuyển chọn từ vùng xoài cát Hòa Lộc, sấy lạnh giữ màu tự nhiên và dinh dưỡng.</p>
+  </div>
+
+  <ng-container *ngIf="!isLoading(); else loadingBlock">
+    <div *ngIf="!loadError(); else errorBlock" class="product-grid">
+      <article
+        class="product-card"
+        *ngFor="let product of products(); trackBy: product?.id"
+        [class.product-card--active]="product.id === selectedProduct()?.id"
+        (click)="orderForm.controls.productId.setValue(product.id)"
+      >
+        <img [src]="product.imageUrl" [alt]="product.name" loading="lazy" />
+        <div class="product-card__body">
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.description }}</p>
+          <dl>
+            <div>
+              <dt>Khối lượng</dt>
+              <dd>{{ product.weightGrams }} g</dd>
+            </div>
+            <div>
+              <dt>Giá bán</dt>
+              <dd>{{ product.price | currency:'VND':'symbol':'1.0-0' }}</dd>
+            </div>
+            <div>
+              <dt>Tồn kho</dt>
+              <dd>{{ product.stockQuantity }}</dd>
+            </div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingBlock>
+    <div class="state-card">
+      <span class="spinner"></span>
+      <p>Đang tải sản phẩm...</p>
+    </div>
+  </ng-template>
+
+  <ng-template #errorBlock>
+    <div class="state-card state-card--error">
+      <p>{{ loadError() }}</p>
+      <button type="button" class="ghost" (click)="loadProducts()">Thử lại</button>
+    </div>
+  </ng-template>
+</section>
+
+<section class="section section--highlight">
+  <div class="highlight-grid">
+    <div>
+      <h2>Cam kết chất lượng</h2>
+      <ul>
+        <li>Xoài chín tự nhiên, không sử dụng trái non hay hóa chất thúc chín.</li>
+        <li>Sấy lạnh nhiều giờ, giữ màu vàng đẹp và độ dẻo mềm tự nhiên.</li>
+        <li>Không phẩm màu, không chất bảo quản, đạt chuẩn an toàn thực phẩm.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>Quà tặng sức khỏe</h2>
+      <p>
+        Hộp xoài sấy XoaiSay được thiết kế sang trọng, dễ dàng ghi lời chúc. Mỗi phần quà đều được đóng gói hút chân không, đảm bảo độ tươi ngon
+        trong 6 tháng ở nhiệt độ thường.
+      </p>
+      <p>
+        Đối tác doanh nghiệp vui lòng liên hệ để được tư vấn thiết kế bao bì riêng và chính sách giá tốt cho đơn hàng số lượng lớn.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="order">
+  <div class="section__header">
+    <h2>Đặt hàng trực tuyến</h2>
+    <p>Điền thông tin bên dưới, đội ngũ chăm sóc khách hàng sẽ liên hệ để xác nhận và giao hàng tận nơi.</p>
+  </div>
+
+  <form class="order-form" [formGroup]="orderForm" (ngSubmit)="submitOrder()">
+    <div class="order-form__grid">
+      <label>
+        Chọn sản phẩm
+        <select formControlName="productId">
+          <option *ngFor="let product of products()" [value]="product.id">{{ product.name }}</option>
+        </select>
+      </label>
+
+      <label>
+        Số lượng (gói)
+        <input type="number" formControlName="quantity" min="1" max="100" />
+        <span class="field-error" *ngIf="orderForm.controls.quantity.invalid && orderForm.controls.quantity.touched">
+          Vui lòng nhập số lượng từ 1 đến 100.
+        </span>
+      </label>
+
+      <label>
+        Họ và tên
+        <input type="text" formControlName="customerName" />
+        <span class="field-error" *ngIf="orderForm.controls.customerName.invalid && orderForm.controls.customerName.touched">
+          Vui lòng nhập họ tên.
+        </span>
+      </label>
+
+      <label>
+        Email
+        <input type="email" formControlName="customerEmail" />
+        <span class="field-error" *ngIf="orderForm.controls.customerEmail.invalid && orderForm.controls.customerEmail.touched">
+          Địa chỉ email không hợp lệ.
+        </span>
+      </label>
+
+      <label>
+        Số điện thoại
+        <input type="tel" formControlName="phoneNumber" />
+        <span class="field-error" *ngIf="orderForm.controls.phoneNumber.invalid && orderForm.controls.phoneNumber.touched">
+          Vui lòng nhập số điện thoại.
+        </span>
+      </label>
+
+      <label class="full-width">
+        Địa chỉ giao hàng
+        <textarea formControlName="shippingAddress" rows="3"></textarea>
+        <span class="field-error" *ngIf="orderForm.controls.shippingAddress.invalid && orderForm.controls.shippingAddress.touched">
+          Địa chỉ giao hàng là bắt buộc.
+        </span>
+      </label>
+
+      <label class="full-width">
+        Ghi chú (tuỳ chọn)
+        <textarea formControlName="notes" rows="2" placeholder="Ví dụ: giao vào buổi sáng, xuất hóa đơn..."></textarea>
+      </label>
+    </div>
+
+    <div class="order-form__summary" *ngIf="selectedProduct() as product">
+      <div>
+        <span>Sản phẩm</span>
+        <strong>{{ product.name }} ({{ product.weightGrams }} g)</strong>
+      </div>
+      <div>
+        <span>Tổng tiền tạm tính</span>
+        <strong>{{ computedTotal() | currency:'VND':'symbol':'1.0-0' }}</strong>
+      </div>
+    </div>
+
+    <div class="order-form__actions">
+      <button type="submit" class="cta" [disabled]="isSubmitting() || orderForm.invalid">
+        <span *ngIf="!isSubmitting(); else submitting">Gửi đơn hàng</span>
+      </button>
+      <ng-template #submitting><span class="spinner spinner--inline"></span> Đang gửi...</ng-template>
+    </div>
+
+    <p class="order-form__success" *ngIf="orderSuccess()">
+      Cảm ơn bạn đã đặt hàng! Chúng tôi sẽ liên hệ xác nhận trong vòng 2 giờ làm việc.
+    </p>
+  </form>
+</section>
+
+
