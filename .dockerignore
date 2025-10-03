@@ -1,0 +1,12 @@
+**/.git
+**/bin
+**/obj
+**/TestResults
+angular/node_modules
+angular/dist
+Dockerfile
+Dockerfile.*
+README.md
+*.user
+*.suo
+.vscode/
