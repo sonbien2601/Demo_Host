@@ -39,7 +39,7 @@ using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Studio.Client.AspNetCore;
 using Volo.Abp.Security.Claims;
-using Volo.Abp.AspNetCore.Mvc.UI.StaticFiles;
+using Volo.Abp.AspNetCore.Mvc.Libs;
 
 namespace XoaiSay;
 
