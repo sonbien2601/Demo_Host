@@ -21,11 +21,14 @@ RUN dotnet restore "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj"
 # Copy the remaining source code
 COPY XoaiSay/. .
 
-RUN dotnet dev-certs https -ep /tmp/openiddict.pfx -p "$CERT_PWD" \
-    && dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \
-    && mkdir -p /app/publish/App_Data \
-    && cp /tmp/openiddict.pfx /app/publish/App_Data/openiddict.pfx \
-    && cp /tmp/openiddict.pfx /app/publish/openiddict.pfx \
+RUN dotnet tool install -g Volo.Abp.Cli
+ENV PATH="$PATH:/root/.dotnet/tools"
+RUN cd src/XoaiSay.HttpApi.Host && abp install-libs
+RUN dotnet dev-certs https -ep /tmp/openiddict.pfx -p "$CERT_PWD" \\
+    && dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \\
+    && mkdir -p /app/publish/App_Data \\
+    && cp /tmp/openiddict.pfx /app/publish/App_Data/openiddict.pfx \\
+    && cp /tmp/openiddict.pfx /app/publish/openiddict.pfx \\
     && dotnet publish "src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj" -c Release -o /app/publish/migrator
 
 # Final stage
