@@ -1,7 +1,6 @@
 import { Environment } from '@abp/ng.core';
 
 const baseUrl = 'https://vuaxoaivadongbon.site';
-
 const oAuthConfig = {
   issuer: 'https://demohost-production.up.railway.app',
   redirectUri: baseUrl,
@@ -30,6 +29,6 @@ export const environment = {
   },
   remoteEnv: {
     url: '/getEnvConfig',
-    mergeStrategy: 'deepmerge'
-  }
+    mergeStrategy: 'deepmerge',
+  },
 } as Environment;
