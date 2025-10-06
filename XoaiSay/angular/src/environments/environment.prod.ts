@@ -1,9 +1,9 @@
 import { Environment } from '@abp/ng.core';
 
-const baseUrl = 'http://localhost:4200';
+const baseUrl = 'https://vuaxoaivadongbon.site';
 
 const oAuthConfig = {
-  issuer: 'https://localhost:44352/',
+  issuer: 'https://demohost-production.up.railway.app',
   redirectUri: baseUrl,
   clientId: 'XoaiSay_App',
   responseType: 'code',
@@ -20,7 +20,7 @@ export const environment = {
   oAuthConfig,
   apis: {
     default: {
-      url: 'https://localhost:44352',
+      url: 'https://demohost-production.up.railway.app',
       rootNamespace: 'XoaiSay',
     },
     AbpAccountPublic: {
