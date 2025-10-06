@@ -80,16 +80,7 @@ public class XoaiSayHttpApiHostModule : AbpModule
 
             PreConfigure<OpenIddictServerBuilder>(serverBuilder =>
             {
-                                var certificatePath = Path.Combine(hostingEnvironment.ContentRootPath, "App_Data", "openiddict.pfx");
-                if (!File.Exists(certificatePath))
-                {
-                    certificatePath = Path.Combine(hostingEnvironment.ContentRootPath, "openiddict.pfx");
-                }
-
-                serverBuilder.AddProductionEncryptionAndSigningCertificate(
-                    certificatePath,
-                    configuration["AuthServer:CertificatePassPhrase"]!);
-
+                serverBuilder.AddProductionEncryptionAndSigningCertificate("openiddict.pfx", configuration["AuthServer:CertificatePassPhrase"]!);
                 serverBuilder.SetIssuer(new Uri(configuration["AuthServer:Authority"]!));
             });
         }

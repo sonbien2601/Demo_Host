@@ -25,7 +25,9 @@ RUN dotnet restore "XoaiSay.sln"
 COPY . .
 RUN dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \
     && mkdir -p /app/publish/App_Data \
-    && cp src/XoaiSay.HttpApi.Host/openiddict.pfx /app/publish/App_Data/openiddict.pfx
+    && cp src/XoaiSay.HttpApi.Host/openiddict.pfx /app/publish/App_Data/openiddict.pfx \
+    && cp src/XoaiSay.HttpApi.Host/openiddict.pfx /app/publish/openiddict.pfx \
+    && dotnet publish "src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj" -c Release -o /app/publish/migrator
 
 # Final stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
