@@ -38,7 +38,8 @@ using Volo.Abp.Identity;
 using Volo.Abp.OpenIddict;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Studio.Client.AspNetCore;
-using Volo.Abp.Security.Claims;\r\nusing Volo.Abp.AspNetCore.Mvc.UI.StaticFiles;
+using Volo.Abp.Security.Claims;
+using Volo.Abp.AspNetCore.Mvc.UI.StaticFiles;
 
 namespace XoaiSay;
 
@@ -121,7 +122,11 @@ public class XoaiSayHttpApiHostModule : AbpModule
 
         ConfigureAuthentication(context);
         ConfigureUrls(configuration);
-        ConfigureBundles();\r\n        Configure<AbpMvcLibsOptions>(options =>\r\n        {\r\n            options.CheckLibs = false;\r\n        });
+        ConfigureBundles();
+        Configure<AbpMvcLibsOptions>(options =>
+        {
+            options.CheckLibs = false;
+        });
         ConfigureConventionalControllers();
         ConfigureHealthChecks(context);
         ConfigureSwagger(context, configuration);
@@ -287,4 +292,6 @@ public class XoaiSayHttpApiHostModule : AbpModule
         app.UseConfiguredEndpoints();
     }
 }
+
+
 
