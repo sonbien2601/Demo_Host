@@ -4,6 +4,7 @@ WORKDIR /src
 
 ARG CERT_PWD=admin@123
 
+# Copy project files needed for restore
 COPY ["XoaiSay/XoaiSay.sln", "./"]
 COPY ["XoaiSay/src/XoaiSay.Domain.Shared/XoaiSay.Domain.Shared.csproj", "src/XoaiSay.Domain.Shared/"]
 COPY ["XoaiSay/src/XoaiSay.Domain/XoaiSay.Domain.csproj", "src/XoaiSay.Domain/"]
@@ -17,6 +18,7 @@ COPY ["XoaiSay/src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj", "src/XoaiSay.D
 
 RUN dotnet restore "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj"
 
+# Copy the remaining source code
 COPY XoaiSay/. .
 
 RUN dotnet dev-certs https -ep /tmp/openiddict.pfx -p "$CERT_PWD" \
