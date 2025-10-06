@@ -3,9 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 ARG CERT_PWD=admin@123
-ENV CERT_PWD=${CERT_PWD}
 
-# Copy project files needed for restore
 COPY ["XoaiSay/XoaiSay.sln", "./"]
 COPY ["XoaiSay/src/XoaiSay.Domain.Shared/XoaiSay.Domain.Shared.csproj", "src/XoaiSay.Domain.Shared/"]
 COPY ["XoaiSay/src/XoaiSay.Domain/XoaiSay.Domain.csproj", "src/XoaiSay.Domain/"]
@@ -19,11 +17,9 @@ COPY ["XoaiSay/src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj", "src/XoaiSay.D
 
 RUN dotnet restore "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj"
 
-# Copy the remaining source code and publish
 COPY XoaiSay/. .
+
 RUN dotnet dev-certs https -ep /tmp/openiddict.pfx -p "$CERT_PWD" \
-    && mkdir -p src/XoaiSay.HttpApi.Host/App_Data \
-    && cp /tmp/openiddict.pfx src/XoaiSay.HttpApi.Host/openiddict.pfx \
     && dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \
     && mkdir -p /app/publish/App_Data \
     && cp /tmp/openiddict.pfx /app/publish/App_Data/openiddict.pfx \
