@@ -1,5 +1,8 @@
+# Build stage
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
+
+ARG CERT_PWD=admin@123
 
 COPY ["XoaiSay/XoaiSay.sln", "./"]
 COPY ["XoaiSay/src/XoaiSay.Domain.Shared/XoaiSay.Domain.Shared.csproj", "src/XoaiSay.Domain.Shared/"]
@@ -15,12 +18,15 @@ COPY ["XoaiSay/src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj", "src/XoaiSay.D
 RUN dotnet restore "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj"
 
 COPY XoaiSay/. .
-RUN dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \
+
+RUN dotnet dev-certs https -ep /tmp/openiddict.pfx -p "$CERT_PWD" \
+    && dotnet publish "src/XoaiSay.HttpApi.Host/XoaiSay.HttpApi.Host.csproj" -c Release -o /app/publish \
     && mkdir -p /app/publish/App_Data \
-    && cp src/XoaiSay.HttpApi.Host/openiddict.pfx /app/publish/App_Data/openiddict.pfx \
-    && cp src/XoaiSay.HttpApi.Host/openiddict.pfx /app/publish/openiddict.pfx \
+    && cp /tmp/openiddict.pfx /app/publish/App_Data/openiddict.pfx \
+    && cp /tmp/openiddict.pfx /app/publish/openiddict.pfx \
     && dotnet publish "src/XoaiSay.DbMigrator/XoaiSay.DbMigrator.csproj" -c Release -o /app/publish/migrator
 
+# Final stage
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
