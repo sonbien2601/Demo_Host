@@ -33,4 +33,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
 WORKDIR /app
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 COPY --from=build /app/publish .
-ENTRYPOINT ["dotnet", "XoaiSay.HttpApi.Host.dll"]
+COPY --from=build /src/entrypoint.sh ./entrypoint.sh
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ["./entrypoint.sh"]
